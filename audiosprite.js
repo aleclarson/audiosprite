@@ -214,6 +214,18 @@ module.exports = function(files) {
         } else {
           opts.logger.info('Exported ' + ext + ' OK', { file: outfile })
           if (store) {
+            if (opts.hash) {
+              var hash = require('crypto')
+                .createHash('md5')
+                .update(fs.readFileSync(outfile))
+                .digest('hex')
+                .slice(0, 8)
+                .toUpperCase()
+              
+              var rename = outfile.replace(/(\.[^.]+)$/, `-${hash}$1`)
+              fs.renameSync(outfile, rename)
+              outfile = rename
+            }
             json.resources.push(outfile)
           }
           cb()

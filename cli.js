@@ -91,6 +91,10 @@ var optimist = require('optimist')
   , 'default': 0
   , describe: 'Bypass sound placement on whole second boundaries (0=round,1=bypass).'
   })
+  .options('hash', {
+    'default': false
+  , describe: 'Include content hash in the filename.'
+  })
   .options('help', {
     alias: 'h'
   , describe: 'Show this help message.'
@@ -120,6 +124,7 @@ opts['vbr:vorbis'] = parseInt(argv['vbr:vorbis'], 10)
 opts.loop = argv.loop ? [].concat(argv.loop) : []
 
 opts.ignorerounding = parseInt(argv.ignorerounding, 0)
+opts.hash = !!argv.hash
 
 var files = _.uniq(argv._)
 
