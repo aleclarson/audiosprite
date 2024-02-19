@@ -257,6 +257,7 @@ module.exports = function(files) {
     var formats = {
       aiff: []
     , wav: []
+    , aac: []
     , ac3: ['-acodec', 'ac3', '-ab', opts.bitrate + 'k']
     , mp3: ['-ar', opts.samplerate, '-f', 'mp3']
     , mp4: ['-ab', opts.bitrate + 'k']
